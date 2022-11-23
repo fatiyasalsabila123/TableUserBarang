@@ -1,5 +1,6 @@
 package com.tokoonline.project.controler;
 
+import com.tokoonline.project.auditing.Auditable;
 import com.tokoonline.project.model.TableBarang;
 import com.tokoonline.project.response.CommonResponse;
 import com.tokoonline.project.response.ResponseHelper;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tableBarang")
-public class TableBarangControler {
+public class TableBarangControler extends Auditable {
     @Autowired
     private TableBarangService tableBarangService;
 
