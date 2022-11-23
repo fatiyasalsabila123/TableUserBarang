@@ -10,4 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface TableBarangRepository extends JpaRepository<TableBarang, Long> {
+
+    @Query(value = "select * from table_user where email = :email", nativeQuery = true)
+    Optional<TableUser> findByEmail(String email);
 }
