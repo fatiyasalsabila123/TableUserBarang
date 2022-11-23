@@ -28,9 +28,9 @@ public class TableBarangServiceImpl implements TableBarangService{
 
     @Override
     public TableBarang addTableBarang(TableBarang tableBarang) {
-        return tableBarangRepository.save(tableBarang);
-    }
+            return tableBarangRepository.save(tableBarang);
 
+    }
     @Override
     public Object getTableBarang(Long Id) {
         var tableBarang = tableBarangRepository.findById(Id).orElseThrow(() -> new NotFoundException(("Id tidak Di Temukan")));
