@@ -13,13 +13,10 @@ import java.util.Date;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class CrudAuditable {
-    @MappedSuperclass
-    @EntityListeners(AuditingEntityListener.class)
-    public class Auditable {
 
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         @CreationTimestamp
-        @Column(name = "creted_at", updatable = false)
+        @Column(name = "tanggalDibuat", updatable = false)
         private Date tanggalDibuat;
 
         public Date getTanggalDibuat() {
@@ -29,5 +26,5 @@ public class CrudAuditable {
         public void setTanggalDibuat(Date tanggalDibuat) {
             this.tanggalDibuat = tanggalDibuat;
         }
-    }
+
 }

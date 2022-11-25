@@ -1,10 +1,12 @@
 package com.tokoonline.project.controler;
 
 import com.tokoonline.project.auditing.CrudAuditable;
+import com.tokoonline.project.dto.CrudDTO;
 import com.tokoonline.project.model.Crud;
 import com.tokoonline.project.response.CommonResponse;
 import com.tokoonline.project.response.ResponseHelper;
 import com.tokoonline.project.service.CrudService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class CrudControler extends CrudAuditable {
 
     @Autowired
     private CrudService crudService;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @GetMapping("/all")
     public Object getAllCrud(){
@@ -27,8 +32,8 @@ public class CrudControler extends CrudAuditable {
     }
 
     @PostMapping
-    public ResponseEntity<CommonResponse<Crud>> addCrud(@RequestBody Crud crud) {
-        return ResponseHelper.ok(crudService.addCrud(crud));
+    public ResponseEntity<CommonResponse<Crud>> addCrud(@RequestBody CrudDTO crudDTO) {
+        return ResponseHelper.ok( crudService.addCrud(modelMapper.map(crudDTO, Crud.class)));
     }
 
     @PutMapping("/{Id}")

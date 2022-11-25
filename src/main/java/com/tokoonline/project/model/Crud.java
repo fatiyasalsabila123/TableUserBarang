@@ -1,7 +1,5 @@
 package com.tokoonline.project.model;
-
 import com.tokoonline.project.auditing.CrudAuditable;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +14,7 @@ public class Crud extends CrudAuditable {
     private String namaBarang;
 
     @Column(name = "harga", nullable = false)
-    private Double harga;
+    private String harga;
 
     @Column(name = "pemilik")
     private String pemilik;
@@ -38,11 +36,11 @@ public class Crud extends CrudAuditable {
     }
 
 
-    public Double getHarga() {
+    public String getHarga() {
         return harga;
     }
 
-    public void setHarga(Double harga) {
+    public void setHarga(String harga) {
         this.harga = harga;
     }
 

@@ -23,5 +23,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> emailEeror(EmailException EmailException) {
         return ResponseHelper.error(EmailException.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }
 

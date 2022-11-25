@@ -1,5 +1,6 @@
 package com.tokoonline.project.service;
 
+import com.tokoonline.project.exception.EmailException;
 import com.tokoonline.project.exception.InternalErrorException;
 import com.tokoonline.project.exception.NotFoundException;
 import com.tokoonline.project.model.Crud;
@@ -12,7 +13,7 @@ public class CrudServiceImpl implements CrudService{
     @Autowired
     CrudRepository crudRepository;
 
-    public Object getAllTableBarang() {
+    public Object getAllCrud() {
         try {
             return crudRepository.findAll();
         } catch (Exception e) {
@@ -27,6 +28,9 @@ public class CrudServiceImpl implements CrudService{
 
     @Override
     public Crud addCrud(Crud crud) {
+        if (crudRepository.findByPemilik(crud.getPemilik()).isPresent()) {
+            throw new EmailException("Pemilik Sudah Ada  Digunakan");
+        }
         return crudRepository.save(crud);
     }
     @Override
@@ -39,11 +43,10 @@ public class CrudServiceImpl implements CrudService{
         }
     }
     @Override
-    public Crud editCrud(Long id, String namaBarang, Double harga, String pemilik){
+    public Crud editCrud(Long id, String namaBarang, String harga, String pemilik){
         Crud crud = crudRepository.findById(id).get();
         crud.setNamaBarang(namaBarang);
         crud.setHarga(harga);
-        crud.setPemilik(pemilik);
         return crudRepository.save(crud);
 
     }
